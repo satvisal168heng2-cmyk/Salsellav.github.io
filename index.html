@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ហាងលក់ខោអាវអនឡាញរបស់ខ្ញុំ</title>
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        @import url('https://googleapis.com');
+        body { font-family: 'Kantumruuy Pro', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- របារខាងលើ (Navbar) -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-red-500">FASHION<span class="text-black">KH</span></a>
+            <div class="space-x-6 hidden md:flex">
+                <a href="#" class="hover:text-red-500 font-medium">ទំព័រដើម</a>
+                <a href="#" class="hover:text-red-500 font-medium">អាវបុរស</a>
+                <a href="#" class="hover:text-red-500 font-medium">អាវនារី</a>
+                <a href="#" class="hover:text-red-500 font-medium">បញ្ចុះតម្លៃ ویژه</a>
+            </div>
+            <div class="relative cursor-pointer" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart text-2xl text-gray-700 hover:text-red-500"></i>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full font-bold">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ផ្ទាំងផ្សាយពាណិជ្ជកម្ម (Hero Section) -->
+    <header class="bg-gradient-to-r from-red-500 to-pink-500 text-white py-16 px-4 text-center">
+        <h1 class="text-3xl md:text-5xl font-bold mb-4">ការប្រមូលផ្តុំម៉ូដថ្មីៗប្រចាំឆ្នាំ ២០២៦</h1>
+        <p class="text-lg mb-6 opacity-90">ទិញឥឡូវនេះ ទទួលបានការបញ្ចុះតម្លៃរហូតដល់ ៣០% និងដឹកជញ្ជូនឥតគិតថ្លៃ!</p>
+        <button class="bg-white text-red-500 font-bold px-8 py-3 rounded-full shadow-lg hover:bg-gray-100 transition">ទិញឥឡូវនេះ</button>
+    </header>
+
+    <!-- បញ្ជីទំនិញ (Products Grid) -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <h2 class="text-2xl font-bold text-center mb-8 border-b-2 border-red-500 w-48 mx-auto pb-2">ផលិតផលពេញនិយម</h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- ផលិតផលទី ១ -->
+            <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between">
+                <img src="https://unsplash.com" alt="អាវយឺតដៃខ្លី" class="w-full h-48 object-cover rounded-md mb-4">
+                <div>
+                    <h3 class="font-semibold text-lg mb-1">អាវយឺតដៃខ្លី Premium</h3>
+                    <p class="text-red-500 font-bold mb-3">\$12.00</p>
+                </div>
+                <button onclick="addToCart('អាវយឺតដៃខ្លី Premium', 12)" class="w-full bg-black text-white py-2 rounded hover:bg-red-500 transition text-sm">ថែមចូលកន្ត្រក</button>
+            </div>
+
+            <!-- ផលិតផលទី ២ -->
+            <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between">
+                <img src="https://unsplash.com" alt="អាវសាច់ក្រណាត់បុរស" class="w-full h-48 object-cover rounded-md mb-4">
+                <div>
+                    <h3 class="font-semibold text-lg mb-1">អាវសាច់ក្រណាត់បុរស</h3>
+                    <p class="text-red-500 font-bold mb-3">\$18.50</p>
+                </div>
+                <button onclick="addToCart('អាវសាច់ក្រណាត់បុរស', 18.5)" class="w-full bg-black text-white py-2 rounded hover:bg-red-500 transition text-sm">ថែមចូលកន្ត្រក</button>
+            </div>
+
+            <!-- ផលិតផលទី ៣ -->
+            <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between">
+                <img src="https://unsplash.com" alt="អាវក្រៅ Hoodie" class="w-full h-48 object-cover rounded-md mb-4">
+                <div>
+                    <h3 class="font-semibold text-lg mb-1">អាវក្រៅ Hoodie ស្ទាវ</h3>
+                    <p class="text-red-500 font-bold mb-3">\$25.00</p>
+                </div>
+                <button onclick="addToCart('អាវក្រៅ Hoodie ស្ទាវ', 25)" class="w-full bg-black text-white py-2 rounded hover:bg-red-500 transition text-sm">ថែមចូលកន្ត្រក</button>
+            </div>
+
+            <!-- ផលិតផលទី ៤ -->
+            <div class="bg-white rounded-lg shadow p-4 flex flex-col justify-between">
+                <img src="https://unsplash.com" alt="រ៉ូបនារីទាន់សម័យ" class="w-full h-48 object-cover rounded-md mb-4">
+                <div>
+                    <h3 class="font-semibold text-lg mb-1">រ៉ូបនារីទាន់សម័យ</h3>
+                    <p class="text-red-500 font-bold mb-3">\$22.00</p>
+                </div>
+                <button onclick="addToCart('រ៉ូបនារីទាន់សម័យ', 22)" class="w-full bg-black text-white py-2 rounded hover:bg-red-500 transition text-sm">ថែមចូលកន្ត្រក</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- ផ្ទាំងកន្ត្រកទិញទំនិញ (Cart Sidebar Hidden by default) -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between">
+        <div>
+            <div class="flex justify-between items-center border-b pb-4 mb-4">
+                <h3 class="text-xl font-bold">កន្ត្រកទំនិញរបស់អ្នក</h3>
+                <i onclick="toggleCart()" class="fas fa-times text-xl cursor-pointer hover:text-red-500"></i>
+            </div>
+            <div id="cart-items" class="space-y-4 overflow-y-auto max-h-[60vh]">
+                <!-- ទំនិញនឹងបង្ហាញនៅទីនេះ -->
+                <p class="text-gray-500 text-center py-4">មិនទាន់មានទំនិញនៅឡើយទេ</p>
+            </div>
+        </div>
+        
+        <div class="border-t pt-4">
+            <div class="flex justify-between font-bold text-lg mb-4">
+                <span>សរុប៖</span>
+                <span id="cart-total" class="text-red-500">\$0.00</span>
+            </div>
+            <button onclick="checkout()" class="w-full bg-red-500 text-white py-3 rounded-lg font-bold hover:bg-red-600 transition">កុម្ម៉ង់ទិញភ្លាមៗ</button>
+        </div>
+    </div>
+
+    <!-- ប្រព័ន្ធគ្រប់គ្រងទិន្នន័យកន្ត្រក (JavaScript) -->
+    <script>
+        let cart = [];
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('translate-x-full');
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // ធ្វើបច្ចុប្បន្នភាពចំនួនលេខលើកន្ត្រក
+            document.getElementById('cart-count').innerText = cart.length;
+
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalContainer = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-gray-500 text-center py-4">មិនទាន់មានទំនិញនៅឡើយទេ</p>';
+                cartTotalContainer.innerText = '\$0.00';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                total += item.price;
+                html += `
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <div>
+                            <h4 class="font-medium text-sm">${item.name}</h4>
+                            <p class="text-red-500 text-xs font-bold">$${item.price.toFixed(2)}</p>
+                        </div>
+                        <i onclick="removeFromCart(${index})" class="fas fa-trash text-gray-400 hover:text-red-500 cursor-pointer text-xs"></i>
+                    </div>
+                `;
+            });
+
+            cartItemsContainer.innerHTML = html;
+            cartTotalContainer.innerText = `$${total.toFixed(2)}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkout() {
+            if(cart.length === 0) {
+                alert('សូមជ្រើសរើសខោអាវចូលកន្ត្រកជាមុនសិន!');
+                return;
+            }
+            alert('អរគុណសម្រាប់ការសាកល្បងកុម្ម៉ង់ទិញ! (មុខងារទូទាត់ប្រាក់ពិតប្រាកដត្រូវការការភ្ជាប់ជាមួយប្រព័ន្ធធនាគារបន្ថែម)');
+        }
+    </script>
+</body>
+</html>
